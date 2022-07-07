@@ -1,4 +1,3 @@
-const path = require("path");
 const express = require("express");
 const rateLimit = require("express-rate-limit");
 const cookieParser = require("cookie-parser");
@@ -8,6 +7,9 @@ const mongoSanitize = require("express-mongo-sanitize");
 const xss = require("xss-clean");
 const hpp = require("hpp");
 const bodyParser = require("body-parser");
+
+const userRouter = require("./routes/user");
+const toyRouter = require("./routes/toys");
 
 const app = express();
 app.use(cookieParser(process.env.COOKIE_SECRET));
@@ -52,6 +54,8 @@ app.use((req, res, next) => {
 });
 
 //routes go here
+app.use("/api/user", userRouter);
+app.use("/api/toy", toyRouter);
 
 // if the above routes don't get triggered, we can fire another middleware
 // for catching errors
