@@ -1,3 +1,4 @@
 node_modules
 .env
 package-lock.json
+frontend/kleiba-frontend/node_modules
